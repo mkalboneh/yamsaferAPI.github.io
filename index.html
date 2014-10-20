@@ -371,7 +371,7 @@ ul.subnav {
     <div class="wrapper">
         <header class="clearfix">
             <div class="title-section">
-                <h1 class="title"><a href="www.yamsafer.me">Yamsafer
+                <h1 class="title"><a href="https://www.yamsafer.me" target="_blank">Yamsafer
                 API</a></h1>
 
                 <p>Online travel in the middle east just got smoother!</p><!--      <p class="github">
@@ -440,7 +440,7 @@ ul.subnav {
                     </li>
 
                     <li>
-                        <a href="/dragonfly/urls">Support</a>
+                        <a href="#support">Support</a>
                     </li>
                 </ul>
             </div>
@@ -783,7 +783,7 @@ ul.subnav {
             </section>
 
             <section>
-                <h1 id="hotels">Cities</h1>
+                <h1 id="cities">Cities</h1>
 
                 <h3 class="text-muted" id="cities_list">Cities List</h3>
                 <p>Returns a list of city objects supported by Yamsafer</p>
@@ -1003,7 +1003,7 @@ ul.subnav {
             </section>
             <section>
                 <h1 id="availability">Availability</h1>
-                <p>Returns hotel availability within a time range</p>
+                <p>Returns hotel availability within a date range</p>
                 <h4><i>Example</i></h4> 
                     <pre>https://www.yamsafer.me/api/v2/availability?hotel_id={hotel_id}&lang=ar&checkin_date=mm/dd/yyyy&checkout_date=mm/dd/yyyy</pre>
                 <h4><i>Request</i></h4>
@@ -1184,10 +1184,268 @@ ul.subnav {
 
                                 <td>Search Engine Results Page filters. List of strings used to filter results, example: has_parking, has_internet</td>
                             </tr>
+                            <tr>
+                                <td class="s1">rooms</td>
+
+                                <td>Array</td>
+
+                                <td>Collection of rooms available</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.name</td>
+
+                                <td>String</td>
+
+                                <td>Room name</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.nights</td>
+
+                                <td>Integer</td>
+
+                                <td>Nights count</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.image</td>
+
+                                <td>Array</td>
+
+                                <td>Collection of details regarding the room image</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.image.id</td>
+
+                                <td>String</td>
+
+                                <td>Image id</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.image.url</td>
+
+                                <td>String</td>
+
+                                <td>Image url</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.image.room_id</td>
+
+                                <td>String</td>
+
+                                <td>Room id</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.image.thumb_large</td>
+
+                                <td>String</td>
+
+                                <td>Large version of the image</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.image.thumb_medium</td>
+
+                                <td>String</td>
+
+                                <td>Medium version of the image</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.image.thumb_small</td>
+
+                                <td>String</td>
+
+                                <td>Small version of the image</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.description</td>
+
+                                <td>String</td>
+
+                                <td>Room description</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.amenities</td>
+
+                                <td>Array</td>
+
+                                <td>List of amenities available on the room level</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates</td>
+
+                                <td>Array</td>
+
+                                <td>Collection of rate objects. Each rate represent a set of reservation conditions</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.id</td>
+
+                                <td>String</td>
+
+                                <td>Key for the parameters that determined the Yamsafer rate</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.room_id</td>
+
+                                <td>String</td>
+
+                                <td>Room id for which the rate belongs</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.base_rate</td>
+
+                                <td>Float</td>
+
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.promotion</td>
+
+                                <td>Boolean</td>
+
+                                <td>True, if there is a promotion rate for this room</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.promotion_rate</td>
+
+                                <td>Float</td>
+
+                                <td>Promotion rate, if available, for the room. If not available the promotion rate will be set to zero</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.promotion_description</td>
+
+                                <td>String</td>
+
+                                <td>Describes the promotion, and example of this would be <i>Weekend Special, Student promotion...etc</i></td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.occupancy</td>
+
+                                <td>Integer</td>
+
+                                <td>Number of adults covered by the rate</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.promotion_id</td>
+
+                                <td>Integer</td>
+
+                                <td>Promotion id</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.availability</td>
+
+                                <td>Integer</td>
+
+                                <td>Number of available rooms of this room type</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.cardless_availability</td>
+
+                                <td>Integer</td>
+
+                                <td>Number of rooms available for cardless booking</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.cardless</td>
+
+                                <td>Boolean</td>
+
+                                <td>True, if the room is availalble for cardless booking</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.benefits</td>
+
+                                <td>Array</td>
+
+                                <td>Collection of benifits available for this room</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.benefits.@id</td>
+
+                                <td>Integer</td>
+
+                                <td>Benifit ID</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.benefits.@description</td>
+
+                                <td>String</td>
+
+                                <td>Benifit description</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.cancellation_policy</td>
+
+                                <td>String</td>
+
+                                <td>Details specifics of the cancellation policy, typically the times determining the penalty period and the penalties incurred for cancellation</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.extra_person_charge</td>
+
+                                <td>Float</td>
+
+                                <td>Any charges that may apply, if the number of adults reserving the room, is above the occupancy</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.base_rate_with_extra_person_charge</td>
+
+                                <td>Float</td>
+
+                                <td>Rate with an extra person</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.promotion_rate_with_extra_person_charge</td>
+
+                                <td>Float</td>
+
+                                <td>Promotion rate with an extra person</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.nightly_rates</td>
+
+                                <td>Array</td>
+
+                                <td>Collection of rate keys, each rate key is a linux timestamp represntation of each night in the reservation period</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.nightly_rates.rateObject.night_rate</td>
+
+                                <td>Float</td>
+
+                                <td>Nightly rate</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.nightly_rates.rateObject.night_promotion_rate</td>
+
+                                <td>Float</td>
+
+                                <td>Nightly promotion rate</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.nightly_rates.rateObject.date</td>
+
+                                <td>Integer</td>
+
+                                <td>Linux timestamp representing one night</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">room.rates.tax_type</td>
+
+                                <td>Integer</td>
+
+                                <td>Linux timestamp representing one night</td>
+                            </tr>
                         </table>
                     </pre>
                 </div>
 
+            </section>
+            <section>
+                <h1 id="support">Support</h1>
+                <p>Yamsafer has it’s own in-house built products. The data you receive in a blink of an eye, is a product of our multi-layered distributes systems. We guarantee the speed of the data retrieval at all times.
+                In case of any delay, authentication issues, or any other interruption in our API, please contact us on any of the following channels</p>
+                <a href="#">Yamsafer Dev Team</a>
             </section>
         </div>
     </div>
