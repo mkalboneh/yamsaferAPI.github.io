@@ -11,7 +11,7 @@
     <!-- <link href="css/styles.css" rel="stylesheet"><!-- JS -->
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="js/main.js"></script>
+    <!--<script src="js/main.js"></script>-->
     <style type="text/css">
         @import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
 
@@ -349,7 +349,7 @@ ul.subnav {
 .highlight .vi { color: #008080 } /* Name.Variable.Instance */
 .highlight .il { color: #009999 } /* Literal.Number.Integer.Long */
     </style>
-    
+
 </head>
 
 <body>
@@ -1003,5 +1003,42 @@ ul.subnav {
             </section>
         </div>
     </div>
+<script type="text/javascript">
+    (function ($) {
+  $(document).ready(function () {
+    var subHeadings = []
+
+    $('section h2').each(function () {
+      var $h2 = $(this),
+          name = $h2.text()
+
+      // Give the subheading an id if it doesn't already have one
+      if( !$h2.attr('id') ) {
+        $h2.attr('id', name.replace(/\W/g, '-').replace(/[A-Z]/g, function (ch) { return ch.toLowerCase() }) )
+      }
+
+      subHeadings.push({
+        name: name,
+        id: $h2.attr('id')
+      })
+    })
+
+    if( subHeadings.length ) {
+      var currentPath = window.location.pathname.replace(/\/$/, '')
+      var $ul = $('<ul>')
+        .addClass('subnav')
+        .html(
+          subHeadings.map(function (sh) {
+            return '<li><a href="#' + sh.id + '">' + sh.name + '</a></li>'
+          })
+        )
+
+      var $navLink = $('header li a[href$="' + currentPath + '"]')
+
+      $navLink.after($ul)
+    }
+  })
+})($)
+</script>    
 </body>
 </html>
