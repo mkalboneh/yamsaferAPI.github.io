@@ -1,71 +1,419 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Yamsaferapi.github.io by mkalboneh</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
+    <title>Yamsafer API</title>
+    <meta content="width=device-width" name="viewport">
+    <!-- syntax highlighting CSS -->
+    <link href="css/syntax.css" rel="stylesheet"><!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet"><!-- JS -->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+    <!-- Analytics -->
+    <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-16382932-1']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+
+    </script> <!-- /Analytics -->
+
     <div class="wrapper">
-      <header>
-        <h1>Yamsaferapi.github.io</h1>
-        <p>API Documentation</p>
+        <header class="clearfix">
+            <div class="title-section">
+                <h1 class="title"><a href="www.yamsafer.me">Yamsafer
+                API</a></h1>
 
-        <p class="view"><a href="https://github.com/mkalboneh/yamsaferAPI.github.io">View the Project on GitHub <small>mkalboneh/yamsaferAPI.github.io</small></a></p>
+                <p>Online travel external API</p><!--      <p class="github">
+                <img src="/dragonfly/images/octocat.png" /> <a href="https://github.com/markevans/dragonfly">GitHub Repository</a>
+              </p> -->
+            </div>
 
+            <div class="primary-nav">
+                <ul>
+                    <li>
+                        <a href="#about_yamsafer">About Yamsafer</a>
+                    </li>
 
-        <ul>
-          <li><a href="https://github.com/mkalboneh/yamsaferAPI.github.io/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/mkalboneh/yamsaferAPI.github.io/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/mkalboneh/yamsaferAPI.github.io">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+                    <li>
+                        <a href="#language_support">Language Support</a>
+                    </li>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+                    <li>
+                        <a href="#api_auth">API Authentication</a>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+                        <ul class="subnav">
+                            <li>
+                                <a href="#signup">Sign-up</a>
+                            </li>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+                            <li>
+                                <a href="#auth">Authentication</a>
+                            </li>
+                        </ul>
+                    </li>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+                    <li>
+                        <a href="#hotels">Hotels</a>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+                        <ul class="subnav">
+                            <li>
+                                <a href="#hotels_list">Hotels List</a>
+                            </li>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+                            <li>
+                                <a href="#hotel_info">Hotel Information</a>
+                            </li>
+                        </ul>
+                    </li>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+                    <li>
+                        <a href="#cities">Cities</a>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+                        <ul class="subnav">
+                            <li>
+                                <a href="#cities_list">Cities List</a>
+                            </li>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+                            <li>
+                                <a href="#city_info">City Information</a>
+                            </li>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+                            <li>
+                                <a href="#city_hotels">City Hotels</a>
+                            </li>
+                        </ul>
+                    </li>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/mkalboneh">mkalboneh</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+                    <li>
+                        <a href="/dragonfly/cache">Availability</a>
+                    </li>
+
+                    <li>
+                        <a href="/dragonfly/urls">Support</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <div class="main">
+            <section>
+                <h1 id="about_yamsafer">About Yamsafer</h1>
+
+                <p>Yamsafer is an online travel website that provides quick and
+                direct hotel bookings in the Middle East & Turkey. Our hotels
+                range from international chains to budget and boutique hotels,
+                where we guarantee not only the best prices among our
+                competition, but also ensure value for money paid. Our team is
+                dedicated to a holistic transparency approach, where we are
+                committed to providing the best prices and most up to date
+                information when it comes to our hotel description and
+                policies. In addition, and as a result of the successfull
+                travel data aggregation we succeeded to acquire over time,
+                Yamsafer extends it’s data to partners through a set of RESTful
+                Application Programming Interfaces (APIs). This documentation
+                will explain in details how to interact with Yamsafer APIs.</p>
+            </section>
+
+            <section>
+                <h1 id="language_support">Language Support</h1>
+
+                <p>Yamsafer currently provide support for the following
+                languages:</p>
+
+                <div class="highlight">
+                    <pre>
+                        <table>
+                            <tr>
+                                <th class="no">Lanaguage</th>
+
+                                <th class="no">Code</th>
+                            </tr>
+
+                            <tr>
+                                <td class="s1">Arabic</td>
+
+                                <td>"ar"</td>
+                            </tr>
+
+                            <tr>
+                                <td class="s1">English</td>
+
+                                <td>"en"</td>
+                            </tr>
+                        </table>
+                    </pre>    
+                </div>
+            </section>
+
+            <section>
+                <h1 id="api_auth">API Authentication</h1>
+
+                <h3 class="text-muted" id="signup">Sign-up</h3>
+
+                <p>To use our travel API, please contact <a href="#">Yamsafer
+                Dev Team</a></p>
+
+                <h3 class="text-muted" id="auth">Authentication</h3>
+
+                <p>Upon signup, an API key and a username combination will be
+                assigned to the organization or person handling the data
+                request. All requests sent must contain the apiKey parameter</p>
+
+                <div class="highlight">
+                    <pre>
+                        <table>
+                            <tr>
+                                <th class="no">Name</th>
+
+                                <th class="no">Type</th>
+
+                                <th class="no">Description</th>
+                            </tr>
+
+                            <tr>
+                                <td class="s1">apiKey</td>
+
+                                <td>String</td>
+
+                                <td>Verifies the identity of the request</td>
+                            </tr>
+                        </table>
+                    </pre> 
+                    <h4><i>Example</i></h4> 
+                    <pre>https://www.yamsafer.me/api/v2/hotels?API_KEY=uAo5kiMyvaWOByceXXDm1dJ6Hx9
+                    </pre>
+                </div>
+            </section>
+
+            <section>
+                <h1 id="hotels">Hotels</h1>
+                <h3 class="text-muted" id="hotels_list">Hotels List</h3>
+                <p>Returns a list of all hotels available via Yamsafer and other business partners</p>
+                <h4><i>Example</i></h4> 
+                    <pre>https://www.yamsafer.me/api/v2/hotels?API_KEY=uAo5kiMyvayceXXDm1dJ6Hx9&lang='ar'&limit=10&page=0
+                    </pre>
+                <div class="highlight">
+                    <pre>
+                        <table>
+                            <tr>
+                                <th class="no">Parameter</th>
+
+                                <th class="no">Default</th>
+
+                                <th class="no">Required</th>
+
+                                <th class="no">Description</th>
+                            </tr>
+
+                            <tr>
+                                <td class="s1">lang</td>
+
+                                <td>"en"</td>
+
+                                <td>No</td>
+
+                                <td>Language of the results returned</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">limit</td>
+
+                                <td>"10</td>
+
+                                <td>No</td>
+
+                                <td>Number of hotels per request</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">page</td>
+
+                                <td>0 (zero)</td>
+
+                                <td>No</td>
+
+                                <td>Offset to start from equivalent to the offset query </br>parameter in SQL This parameter will decide at which hotel to start.</td>
+                            </tr>
+                        </table>
+                    </pre> 
+                    <h4><i>Response</i></h4> 
+                    <div class="highlight">
+                    <pre>
+                        <table>
+                            <tr>
+                                <th class="no">Name</th>
+
+                                <th class="no">Type</th>
+
+                                <th class="no">Description</th>
+                            </tr>
+
+                            <tr>
+                                <td class="s1">hotel_id</td>
+
+                                <td>Integer</td>
+
+                                <td>ID for the property. This same ID will be used in any subsequent </br>availability requests or hotel info</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">hotel_name</td>
+
+                                <td>String</td>
+
+                                <td>Name of the property</td>
+
+                            </tr>
+                            <tr>
+                                <td class="s1">description</td>
+
+                                <td>String</td>
+
+                                <td>Description text entered by the property</td>
+
+                            </tr>
+                            <tr>
+                                <td class="s1">stars</td>
+
+                                <td>Float</td>
+
+                                <td>Star rating of the hotel, a value of 0.0 or blank indicate none is available</td>
+
+                            </tr>
+                            <tr>
+                                <td class="s1">longitude</td>
+
+                                <td>Float</td>
+
+                                <td>Longitude coordinates for the hotel</td>
+
+                            </tr>
+                            <tr>
+                                <td class="s1">latitude</td>
+
+                                <td>Float</td>
+
+                                <td>Latitude coordinates for the hotel</td>
+
+                            </tr>
+                            <tr>
+                                <td class="s1">image</td>
+
+                                <td>String</td>
+
+                                <td>URL for the hotel cover image</td>
+
+                            </tr>
+                            <tr>
+                                <td class="s1">address</td>
+
+                                <td>String</td>
+
+                                <td>Hotel street address</td>
+
+                            </tr>
+                            <tr>
+                                <td class="s1">country</td>
+
+                                <td>String</td>
+
+                                <td>The country where the hotel is located</td>
+
+                            </tr>
+                            <tr>
+                                <td class="s1">city</td>
+
+                                <td>String</td>
+
+                                <td>The city where the hotel is located</td>
+
+                            </tr>
+                            <tr>
+                                <td class="s1">is_cardless</td>
+
+                                <td>Boolean</td>
+
+                                <td>True, if the hotel accepts cardless reservations</td>
+
+                            </tr>
+                            <tr>
+                                <td class="s1">pre_paid</td>
+
+                                <td>Boolean</td>
+
+                                <td>True, if the hotel requires payment information in order to hold a reservation</td>
+
+                            </tr>
+                            <tr>
+                                <td class="s1">low_rate</td>
+
+                                <td>String</td>
+
+                                <td>Amount of average low rate for this hotel within seven days period</td>
+
+                            </tr>
+                            <tr>
+                                <td class="s1">low_rate</td>
+
+                                <td>String</td>
+
+                                <td>Amount of average low rate for this hotel within seven days period</td>
+
+                            </tr>
+                            <tr>
+                                <td class="s1">amenities</td>
+
+                                <td>Array</td>
+
+                                <td>Lists general amenities at the property</td>
+
+                            </tr>
+                            <tr>
+                                <td class="s1">serp_filters</td>
+
+                                <td>Array</td>
+
+                                <td>Search Engine Results Page filters. List of strings used to filter results, example: has_parking, has_internet</td>
+
+                            </tr>
+                            <tr>
+                                <td class="s1">path</td>
+
+                                <td>String</td>
+
+                                <td>Path to the hotel page on Yamsafer site</td>
+
+                            </tr>
+                        </table>
+                    </pre> 
+                    <h4><i>Response</i></h4> 
+                    
+                </div>
+                </div>
+                <h3 class="text-muted" id="hotel_info">Hotel Information</h3>
+
+            </section>
+
+            <section>
+                <h1 id="hotels">Cities</h1>
+
+                <h3 class="text-muted" id="cities_list">Cities List</h3>
+
+                <h3 class="text-muted" id="city_info">City Information</h3>
+
+                <h3 class="text-muted" id="city_hotels">City Hotels</h3>
+            </section>
+        </div>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+</body>
 </html>
