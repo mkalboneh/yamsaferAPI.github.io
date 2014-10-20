@@ -374,7 +374,7 @@ ul.subnav {
                 <h1 class="title"><a href="www.yamsafer.me">Yamsafer
                 API</a></h1>
 
-                <p>Online travel external API</p><!--      <p class="github">
+                <p>Online travel in the middle east just got smoother!</p><!--      <p class="github">
                 <img src="/dragonfly/images/octocat.png" /> <a href="https://github.com/markevans/dragonfly">GitHub Repository</a>
               </p> -->
             </div>
@@ -436,7 +436,7 @@ ul.subnav {
                     </li>
 
                     <li>
-                        <a href="/dragonfly/cache">Availability</a>
+                        <a href="#availability">Availability</a>
                     </li>
 
                     <li>
@@ -929,7 +929,7 @@ ul.subnav {
                 <h3 class="text-muted" id="city_hotels">City Hotels</h3>
                 <p>Hotels in a given city</p>
                 <h4><i>Example</i></h4> 
-                    <pre>https://www.yamsafer.me/api/v2/hotels/city/{city_id}?lang=ar</pre>
+                    <pre>https://www.yamsafer.me/api/v2/cities/{city_id}/hotels?lang=ar</pre>
                 <h4><i>Request</i></h4>
                 <div class="highlight">
                     <pre>
@@ -1001,8 +1001,199 @@ ul.subnav {
                     </pre>
                 </div>
             </section>
+            <section>
+                <h1 id="availability">Availability</h1>
+                <p>Returns hotel availability within a time range</p>
+                <h4><i>Example</i></h4> 
+                    <pre>https://www.yamsafer.me/api/v2/availability?hotel_id={hotel_id}&lang=ar&checkin_date=mm/dd/yyyy&checkout_date=mm/dd/yyyy</pre>
+                <h4><i>Request</i></h4>
+                <div class="highlight">
+                    <pre>
+                        <table>
+                            <tr>
+                                <th class="no">Parameter</th>
+
+                                <th class="no">Default</th>
+
+                                <th class="no">Required</th>
+
+                                <th class="no">Description</th>
+                            </tr>
+                            <tr>
+                                <td class="s1">hotel_id</td>
+
+                                <td>--</td>
+
+                                <td>Yes</td>
+
+                                <td>Hotel id for the requested hotel</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">lang</td>
+
+                                <td>"en"</td>
+
+                                <td>No</td>
+
+                                <td>Results language</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">checkin_date</td>
+
+                                <td>--</td>
+
+                                <td>Yes</td>
+
+                                <td>Check-in date, in MM/DD/YYYY format</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">checkout_date</td>
+
+                                <td>--</td>
+
+                                <td>Yes</td>
+
+                                <td>Check-out date, in MM/DD/YYYY format</td>
+                            </tr>
+                        </table>
+                    </pre>
+                </div>
+                <h4><i>Response</i></h4> 
+                <p>Returns the hotels availability object</p>
+                <div class="highlight">
+                    <pre>
+                        <table>
+                            <tr>
+                                <th class="no">Name</th>
+
+                                <th class="no">Type</th>
+
+                                <th class="no">Description</th>
+                            </tr>
+                            <tr>
+                                <td class="s1">hotel_id</td>
+
+                                <td>Integer</td>
+
+                                <td>Yamsafer hotel ID</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">hotel_name</td>
+
+                                <td>String</td>
+
+                                <td>Name of the property</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">description</td>
+
+                                <td>String</td>
+
+                                <td>Description text entered by the property</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">stars</td>
+
+                                <td>Float</td>
+
+                                <td>Star rating of the hotel, a value of 0.0 or blank indicate none is available</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">longitude</td>
+
+                                <td>Float</td>
+
+                                <td>Longitude coordinates for the hotel</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">latitude</td>
+
+                                <td>Float</td>
+
+                                <td>Latitude coordinates for the hotel</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">cover_image</td>
+
+                                <td>String</td>
+
+                                <td>URL for the hotel cover image</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">address</td>
+
+                                <td>String</td>
+
+                                <td>Hotel street address</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">country</td>
+
+                                <td>String</td>
+
+                                <td>The country where the hotel is located</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">city</td>
+
+                                <td>String</td>
+
+                                <td>The city where the hotel is located</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">is_cardless</td>
+
+                                <td>Boolean</td>
+
+                                <td>True, if the hotel accepts cardless reservations</td>
+
+                            </tr>
+                            <tr>
+                                <td class="s1">pre_paid</td>
+
+                                <td>Boolean</td>
+
+                                <td>True, if the hotel requires payment information in order to hold a reservation</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">total_price</td>
+
+                                <td>Float</td>
+
+                                <td>Total price for the period requested</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">price_per_night</td>
+
+                                <td>Float</td>
+
+                                <td>Price per night</td>
+                            </tr>
+                            <tr>
+                                <td class="s1">amenities</td>
+
+                                <td>Array</td>
+
+                                <td>Lists general amenities at the property</td>
+
+                            </tr>
+                            <tr>
+                                <td class="s1">serp_filters</td>
+
+                                <td>Array</td>
+
+                                <td>Search Engine Results Page filters. List of strings used to filter results, example: has_parking, has_internet</td>
+                            </tr>
+                        </table>
+                    </pre>
+                </div>
+
+            </section>
         </div>
     </div>
+
+
+
 <script type="text/javascript">
     (function ($) {
   $(document).ready(function () {
